@@ -1,0 +1,15 @@
+service md5_tunnel
+{
+        disable = no
+        type = UNLISTED
+        wait = no
+        server = /home/md5_tunnel/server.py
+        socket_type = stream
+        protocol = tcp
+        user = md5_tunnel
+        port = 4906
+        flags = REUSE
+        per_source = 5
+        rlimit_cpu = 3
+        nice = 18
+}

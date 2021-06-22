@@ -1,0 +1,15 @@
+service sha1_dead
+{
+        disable = no
+        type = UNLISTED
+        wait = no
+        server = /home/sha1_dead/server.py
+        socket_type = stream
+        protocol = tcp
+        user = sha1_dead
+        port = 4905
+        flags = REUSE
+        per_source = 5
+        rlimit_cpu = 3
+        nice = 18
+}
