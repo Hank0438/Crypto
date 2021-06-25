@@ -6,8 +6,8 @@
 
     * Block Cipher
         1. aes_cbc_oracle, Bamboofox CTF - minipadding
-        2. aes_cbc_bitflip, 
-        3. aes_copy_paste, 
+        2. aes_cbc_bitflip, n00b19CTF - Easy-Flipp
+        3. aes_copy_paste, AIS3 2017 - Crypto 2
         4. des_ofb, Boston Key Party CTF 2016 - DES OFB
         5. double_des, picoCTF 2021 - Double DES
         6. spn_z3, Nintendo HireMe
