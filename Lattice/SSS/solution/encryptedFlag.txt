@@ -1,0 +1,1 @@
+encrypted_flag = '6b0a375e169311ab54da57b6d6487a8abce283c09bd8f94033ac2cd79c0109c2'

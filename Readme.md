@@ -1,4 +1,16 @@
 ## CTF
+* Installation
+    * pwntools
+        * python3 -m pip install pwntools
+    * pycrytodome
+        * python3 -m pip install pycryptodome
+    * gmpy2
+        * sudo apt install libmpc-dev
+        * python3 -m pip install gmpy2
+    * sage
+        * sudo apt-get install -y sagemath
+        
+
 
 * Info Table (title, reference, port)
     * Classical Cryptography
@@ -31,21 +43,21 @@
         6. rainbow_table, 
     
     * RSA
-        1. 
-        2. 
-        3. 
-        4. 
-        5. 
-        6. 
-        7. 
+        1. easy_n
+        2. too_smooth, Seccon 2017 - Very Smooth
+        3. fermat, AIS3 2019 - RSA202
+        4. common_module
+        5. common_factor
+        6. broadcast
+        7. lsb_oracle
         8. 
-        9. 
+        9. stereotype
         10. 
 
     * Lattice
         1. Knapsack, me
-        2. NTRU_encrypt, 
-    
+        2. NTRU_encrypt - 
+        3. GGH, GYCTF 2020 - GGH
 
 
 
