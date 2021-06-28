@@ -1,3 +1,12 @@
+import math
+import gmpy2
+
+def gcd(a, b):
+    while b != 0
+        t = b
+        b = a % b
+        a = t
+    return a
 
 
 def SquareAndMultiplyRecursive(x, y):
@@ -32,8 +41,6 @@ def SquareAndMultiplyByMontgomeryLadder(x, n, k):
         n = n >> 1
     return x1
 
-def gcd(a, b):
-    pass
 def pollard(n)
     a = 2
     b = 2
@@ -43,8 +50,7 @@ def pollard(n)
         if 1 < d < n: return d
         b += 1
 
-import math
-import gmpy2
+
 
 def FermatFactorization(n):
 

@@ -15,6 +15,7 @@
 * Info Table (title, reference, port)
     * Classical Cryptography
         1. sub, me
+        2. sub_b64, me
 
     * Block Cipher
         1. aes_cbc_oracle, Bamboofox CTF - minipadding
@@ -48,16 +49,14 @@
         3. fermat, AIS3 2019 - RSA202
         4. common_module
         5. common_factor
-        6. broadcast
+        6. broadcast_crt
         7. lsb_oracle
-        8. 
+        8. robot
         9. stereotype
-        10. 
 
     * Lattice
         1. Knapsack, me
-        2. NTRU_encrypt - 
-        3. GGH, GYCTF 2020 - GGH
+        2. NTRU_encrypt, 
 
 
 
