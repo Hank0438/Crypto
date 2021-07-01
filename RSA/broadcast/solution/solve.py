@@ -31,7 +31,7 @@ c3 = pow(m,e,n3)
 
 def chinese_remainder(n, a):
     sum = 0
-    prod = reduce(lambda a, b: a*b, n)  # product all
+    prod = reduce(lambda x, y: x*y, n)  # product all
  
     for ni, ai in zip(n, a):
         p = prod // ni

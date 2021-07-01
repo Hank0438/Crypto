@@ -51,11 +51,11 @@
         5. common_factor
         6. broadcast_crt
         7. lsb_oracle
-        8. robot
+        8. rsa_sig, Google CTF 2017 - RSA CTF Challenge
         9. stereotype
 
     * Lattice
-        1. Knapsack, me
+        1. knapsack, me
         2. NTRU_encrypt, 
 
 
