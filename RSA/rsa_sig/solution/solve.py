@@ -27,7 +27,7 @@ def cube_root(n):
     return int(iroot(mpz(n), 3)[0])
 
 
-
+## fake message pass signature check!
 message = "BleichenbachersLowExponentAttack".encode("ASCII")
 message_hash = hashlib.sha256(message).digest()
 
@@ -55,6 +55,10 @@ print(len(to_bytes(from_bytes(sig) ** 3)) == 2048//8 - 1)
 print(b'\x00' not in to_bytes(from_bytes(sig) ** 3)[:-len(suffix)])
 print(binascii.hexlify(sig))
 print(binascii.hexlify(to_bytes(from_bytes(sig) ** 3)))
+
+
+
+
 p,q = getPrime(1024), getPrime(1024)
 key = rsa.RsaPublicKey(p*q, 3)
 

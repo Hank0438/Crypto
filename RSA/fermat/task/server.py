@@ -36,24 +36,20 @@ def main():
         e = getPrime(30)
         print(f'e = {str(e)}')
         n1 = r * next_prime(r)
-        print('n1 : r * next_prime(r)')
         print(f'n1 = {str(n1)}')
         n2 = p * q
-        print('n2 : p * q')
         print(f'n2 = {str(n2)}')
 
-        FLAG = 'AIS3{S0me7im3s_I_h4tE_factorDB}'
+        FLAG = open("./flag.txt", "rb").read().strip()
         FLAG1 = s2n(FLAG[:len(FLAG)//2])
         FLAG2 = s2n(FLAG[len(FLAG)//2:])
 
         enc1 = pow(FLAG1, e, n1)
         enc2 = pow(FLAG2, e, n2)
 
-        print('enc : pow(FLAG1, e, n1)')
-        print(f'enc1 = {str(enc1)}')
-        print('enc : pow(FLAG2, e, n2)')
-        print(f'enc2 = {str(enc2)}')
         
+        print(f'enc1 = {enc1}')
+        print(f'enc2 = {enc2}')
         print('p,q,r are prime numbers.')
         print('((p-1) % r)**2 + ((r**5 - 1) % p)**2 == 0')
         print('Good luck !!')

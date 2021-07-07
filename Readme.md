@@ -23,9 +23,7 @@
         3. aes_copy_paste, AIS3 2017 - Crypto 2
         4. des_ofb, Boston Key Party CTF 2016 - DES OFB
         5. double_des, picoCTF 2021 - Double DES
-        6. spn_z3, Nintendo HireMe
-        7. diff_analysis
-        8. linear_analysis
+        6. spn, Nintendo HireMe
     
     * Stream Cipher
         1. lcg, me

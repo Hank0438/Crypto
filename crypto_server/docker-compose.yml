@@ -42,4 +42,11 @@ services:
     - ./md5_tunnel/xinetd:/etc/xinetd.d/md5_tunnel
    ports:
     - "60006:4906"
+  lsb_oracle: 
+    build: ./lsb_oracle/
+    volumes:
+      - ./lsb_oracle/share:/home/lsb_oracle
+      - ./lsb_oracle/xinetd:/etc/xinetd.d/lsb_oracle
+    ports:
+      - "60007:4907"
     
