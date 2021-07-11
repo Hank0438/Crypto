@@ -31,5 +31,3 @@ m = a * inverse_mod(f, g) %  g
 print(m)
 print(bytearray.fromhex(hex(m)[2:]).decode())
 
-
-# flag{c3bb1f88-2c0b-48fc-9902-beada6d50df6}

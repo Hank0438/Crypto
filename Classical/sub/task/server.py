@@ -10,9 +10,9 @@ import os
 import sys
 
 with open('./plain.txt') as f:
-    plain = f.read()
+    plain = f.read().strip()
 with open('./secret1.txt') as f:
-    flag = f.read()
+    flag = f.read().strip()
 
 def genPlaintext():
     rndgen = random.SystemRandom()
@@ -36,10 +36,11 @@ def genCiphertext(text):
 
 if '__name__' != '__main__':
     
+    f = open("cipher.txt", "w")
     plaintext = genPlaintext()
     plaintext = flag + plaintext
     chiphertext = genCiphertext(plaintext)
-    print("chiphertext: ", chiphertext)
+    f.write(chiphertext)
     sys.stdout.flush()
     exit(0)
     

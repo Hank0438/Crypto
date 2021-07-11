@@ -58,11 +58,6 @@ def bye(s):
 	exit(0)
 
 
-# def alarm(time):
-
-# 	signal.signal(signal.SIGALRM, lambda signum, frame: bye('Too slow!'))
-# 	signal.alarm(time)
-
 
 def printFlag():
 	print(FLAG)
@@ -91,11 +86,6 @@ def register(name, pwd):
 
 
 def login(name, pwd, token):
-
-	# token = input('Give me your token: ').strip().encode()
-	# name = input('Give me your username: ').strip().encode()
-	# pwd = input('Give me your password: ').strip().encode()
-
 	
 	pt = aes.decrypt(b64d(token.encode())).decode()
 	data = parse_qs(pt, strict_parsing=True)
@@ -111,23 +101,15 @@ def login(name, pwd, token):
 		print('Hi admin:')
 		printFlag()
 
-	# except Exception:
-	# 	print('Something went wrong!! QAQ')
 
 
 
-def main():
+def poc():
 
-	# alarm(60)
 	print('Select your choice: ')
 	print('0 : Register')
 	print('1 : Login')
 
-	# num = int(input().strip())
-	# if num == 0:
-	# 	register()
-	# elif num == 1:
-	# 	login()
 
 	name = 'AAAAA'
 	pwd = 'abcde'
@@ -141,20 +123,20 @@ def main():
 	fake_token = b64e(token_b64d[0:16] + fake_token_b64d[16:]).decode()
 
 
-
-
-
 	login(name, pwd, token)
 	login(name, pwd, fake_token)
 
+def cracker():
+	while True:
+		a = input('Give me your token: ').strip()
+		b = input('Give me your token: ').strip()
+
+		a1 = b64d(a.encode())
+		b1 = b64d(b.encode())
+		print(b64e(a1[:16]+b1[16:]).decode())
 
 if __name__ == '__main__':
 
-	# main()
-    while(1):
-        a = input('Give me your token: ').strip()
-        b = input('Give me your token: ').strip()
-
-        a1 = b64d(a.encode())
-        b1 = b64d(b.encode())
-        print(b64e(a1[:16]+b1[16:]).decode())
+	# poc()
+	cracker()
+	

@@ -1,6 +1,6 @@
 from secret import init1,init2,init3,FLAG
 import hashlib
-assert(FLAG=="flag{"+hashlib.sha256(init1+init2+init3).hexdigest()+"}")
+assert(FLAG=="Crypto{"+hashlib.sha256(init1+init2+init3).hexdigest()+"}")
 
 class lfsr():
     def __init__(self, init, mask, length):

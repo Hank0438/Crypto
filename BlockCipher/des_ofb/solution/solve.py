@@ -1,61 +1,45 @@
+#!/usr/bin/python
+#
+# BKPCTF 2016
+# desofb (CRYPTO/2)
+#
+# @a: Smoke Leet Everyday
+# @u: https://github.com/smokeleeteveryday
+#
+
+import string
 from Crypto.Cipher import DES
 
-search_arr = [('B', 13, 93), ('K', 14, 93), ('P', 15, 93), ('C', 0, 94), ('T', 1, 94), ('F', 2, 94), ('{', 3, 94), ('s', 4, 94), ('o', 5, 94), ('_', 6, 94), ('i', 7, 94), ('t', 8, 94), ('s', 9, 94), ('_', 10, 94), ('j', 11, 94), ('u', 12, 94), ('s', 13, 94), ('t', 14, 94), ('_', 15, 94), ('a', 0, 95), ('_', 1, 95), ('s', 2, 95), ('h', 3, 95), ('o', 4, 95), ('r', 5, 95), ('t', 6, 95), ('_', 7, 95), ('r', 8, 95), ('e', 9, 95), ('p', 10, 95), ('e', 11, 95), ('a', 12, 95), ('t', 13, 95), ('i', 14, 95), ('n', 15, 95), ('g', 0, 96), ('_', 1, 96), ('o', 2, 96), ('t', 3, 96), ('p', 4, 96), ('!', 5, 96), ('}', 6, 96), ('\n', 7, 96)]
 
-ct2=open("ciphertext2","wb")
-ct=open("ciphertext","rb").read()
-pt=[]
-best_arr = []
-fix_counter = 0
-target = b'BKPCTF'
-patch = [19,0,9,1,25,9,]
-for i in range(16):
-    counts=[0]*256
-    for c in ct[i::16]:
-        counts[c]+=1
-    mx=0
-    best=0
-    for k, val in enumerate(counts):
-        if val>mx:
-            mx=val
-            best=k
-    if i==6:
-        best=0x53
-    if i==13:
-        best=0x16
-    if i==15:
-        best=0x18
-    print("Key:", best)
-    ptt=[]
-    best_arr.append(best)
-    for idx, c in enumerate(ct[i::16]):
-        ptt.append(chr(c^best^ord(" ")))
+def get_blocks(data, block_size):
+	return [data[i:i+block_size] for i in range(0, len(data), block_size)]
 
-        if fix_counter < 6:
-            if (ptt[-1], len(pt), idx) in search_arr: 
-                if bytes([ord(ptt[-1])]) in target:
-                    print(ptt[-1])
-                    ct = ct[:(i+(idx*16))] + bytes([c^patch[fix_counter]]) + ct[(i+(idx*16)+1):]
-                    fix_counter += 1
-        # else:
-        #     ct2[i+(idx*16)] = bytes([c])
-    # print("".join(ptt))
-    pt.append("".join(ptt))
+def xor_strings(xs, ys):
+	return b"".join((bytes([x ^ y])) for x, y in zip(xs, ys))
 
-ct2.write(ct)
-ct2.close()
-fix_flag = []
-res=[]
-for i in range(len(pt[0])):
-    for j in range(16):
-        try:
-            res.append(pt[j][i])
-            if( i >= 93):
-                if ((i==93) & (j<13)):
-                    continue
-                fix_flag.append((pt[j][i], j, i))
-        except:
-            pass
+c = open("ciphertext", "rb").read()
+IV = b'13245678'
+bs = DES.block_size
 
-print(fix_flag)
-print("".join(res))
+assert (len(c) % bs == 0), "[-] Ciphertext not a multiple of DES blocksize"
+
+blocks = get_blocks(c, bs)
+
+
+for b in blocks:
+    x = xor_strings(b, IV)
+    print(x) # the even blocks show plaintext !
+
+p = b" be, tha"
+k = xor_strings(blocks[2], p)
+
+s = b""
+for i in range(len(blocks)):
+	if (i % 2 == 0):
+		b = xor_strings(blocks[i], k)
+	else:
+		b = xor_strings(blocks[i], IV)
+
+	s += b
+
+print(s)

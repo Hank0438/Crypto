@@ -5,15 +5,17 @@ import random
 
 # with open('../flag.txt', 'rb') as f:
 #     flag = f.read()
-flag = b'Balsn{T0_4cCept_0r_tO_r3jeCt__7hat_1s_tHe_Qu3sT1On}'
+# flag = b'Balsn{T0_4cCept_0r_tO_r3jeCt__7hat_1s_tHe_Qu3sT1On}'
+flag = open("./flag.txt", "rb").read().strip()
+f = open("./output1.txt", "w")
 
 version = sys.version.replace('\n', ' ')
-print(f'Python {version}')
+f.write(f'Python {version}\n')
 random.seed(os.urandom(1337))
 
 
 for i in range(0x1337):
-    print(random.randrange(3133731337))
+    f.write(f'{str(random.randrange(3133731337))}\n')
 
 
 # Encrypt flag
@@ -27,4 +29,4 @@ key = sha512.digest()
 
 
 enc = bytes(a ^ b for a, b in zip(flag, key))
-print('Encrypted:', enc.hex())
+f.write(f'Encrypted: {enc.hex()}\n')

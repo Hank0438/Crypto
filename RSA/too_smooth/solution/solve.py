@@ -28,12 +28,9 @@ yioxCqbXYIMxGO4NcQIDAQAB
         assert pub.n == p * q
         priv = RSA.construct((pub.n, pub.e, modinv(pub.e, (p - 1) * (q - 1))))
 
-    # with open('private_key.pem','wb') as f:
-    #     f.write(priv.exportKey('PEM'))
+    with open('private_key.pem','wb') as f:
+        f.write(priv.exportKey('PEM'))
 
-
-    # with open('private_key.pem','wb') as f:
-    #     f.write(priv.exportKey('PEM'))
 
 
 # def pollard_pm1(N,prange=10000000):

@@ -12,7 +12,7 @@ INNER = ntopoly(0x3636363636363636)
 OUTER = ntopoly(0x5c5c5c5c5c5c5c5c)
 CRC_POLY = ntopoly((2**64) + 0xeff67c77d13835f7)
 CONST = ntopoly(0xabaddeadbeef1dea)
-HMAC_CRC = ntopoly(0x9a4579f7a040777d)
+HMAC_CRC = ntopoly(0x14e9860ad30728a3)
 m = ntopoly(int.from_bytes(b"zupe zecret", byteorder='big'))
 M = 88
 

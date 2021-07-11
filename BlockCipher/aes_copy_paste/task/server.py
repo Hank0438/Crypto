@@ -10,7 +10,7 @@ from base64 import b64decode as b64d
 from Crypto.Random import get_random_bytes
 from Crypto.Cipher import AES
 
-FLAG = "ais3{ABCDEFGHIJKLMNOPQRSTUVWXYZZZZZZZ}"
+FLAG = open("./flag.txt", "r").read().strip()
 KEY = get_random_bytes(32)
 
 blockSize = 16
@@ -118,16 +118,17 @@ def login():
 
 def main():
 
-	alarm(60)
-	print('Select your choice: ')
-	print('0 : Register')
-	print('1 : Login')
+	alarm(100)
+	for _ in range(3):
+		print('Select your choice: ')
+		print('0 : Register')
+		print('1 : Login')
 
-	num = int(input().strip())
-	if num == 0:
-		register()
-	elif num == 1:
-		login()
+		num = int(input().strip())
+		if num == 0:
+			register()
+		elif num == 1:
+			login()
 
 
 if __name__ == '__main__':

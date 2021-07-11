@@ -1,15 +1,13 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 import binascii
 from base64 import b64encode, b64decode
 from Crypto.Cipher import AES
+import hashlib
 
-with open('/home/ctf/key', 'rb') as data:
-    key = data.read().strip()
-
-with open('/home/ctf/flag', 'rb') as data:
-    flag = data.read().strip()
-
+flag = open("flag.txt", "rb").read().strip()
+key = hashlib.md5(flag).hexdigest().encode()[:16]
 IV = b"STARWAR888888888"
+
 
 def pad(plain):
     # calculate padding length
@@ -43,8 +41,11 @@ def in_message(message):
     text = decrypt(iv, text)
     return text
 
+
+
 def main():
-    assert(b64encode(encrypt(IV, pad(flag))) == b"XmmSv7+azqHCSPwBYfsVKVoqq+NpOaWrRHOYlLn3GlRAg4kdAVmEdc5L9koCHcxl5U0Ee28wMqTNdZYzd/BOaynUpmthknT0QdVGLXpx5Oko7QiK7+I0UVFhi8MP0+YFigbKhXMGzuv7ySqhnakeaRhaRGjRvVShMmjL0vitvuw=")
+    # print(b64encode(encrypt(IV, pad(flag))))
+    assert(b64encode(encrypt(IV, pad(flag))) == b'tOe2unnhDCLBhU1oglSayChtYUjc6G4/SgDDGkpnJZg2Qfg+RRg8tVRxO2M2c+NVACfTsK3P3KoTlHBc5EwRbQ==')
     while True:
         try:
             # get the cipher text

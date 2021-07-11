@@ -10,9 +10,9 @@ import os
 import sys
 
 with open('./plain.txt') as f:
-    plain = f.read()
+    plain = f.read().strip()
 with open('./secret2.txt') as f:
-    flag = f.read()
+    flag = f.read().strip()
 
 registered = {}
 
@@ -45,8 +45,9 @@ if '__name__' != '__main__':
     plaintext = base64.b64encode(plaintext)
     plaintext = plaintext.decode()
     
+    f = open("cipher_b64.txt", "w")
     chiphertext = genCiphertext(plaintext)
-    print("chiphertext: ", chiphertext)
+    f.write(chiphertext)
     sys.stdout.flush()
     exit(0)
     

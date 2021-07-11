@@ -1,4 +1,4 @@
-import secrets
+import hashlib
 
 #!/usr/bin/env python
 def to_bits(length, N):
@@ -37,14 +37,14 @@ def str_to_bits(s):
 def bits_to_hex(b):
   return hex(from_bits(b)).rstrip("L")
 
-if __name__ == "__main__":
-    flag = open("./flag.txt", "rb").read().strip()
-    # KEY = to_bits(64, int(f.read().strip("\n"), 16))
-    KEY = int.from_bytes(secrets.token_bytes(8), byteorder='big')
-    KEY = to_bits(64, KEY)
 
-    print(PLAIN_1, "=>", bits_to_hex(hmac(crc, KEY, str_to_bits(PLAIN_1))))
+def main():
+  flag = open("./flag.txt", "r").read().strip()
+  key = open("./key.txt", "rb").read().strip()
+  assert(flag == ("Crypto{%s}" % hashlib.md5(key).hexdigest()))
+  key = to_bits(64, int(key))
 
-    ANS = input("[*] input the key: ")
-    if ANS == bits_to_hex(KEY):
-        print(flag)
+  print(PLAIN_1, "=>", bits_to_hex(hmac(crc, key, str_to_bits(PLAIN_1))))
+
+
+main()

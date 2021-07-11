@@ -4,7 +4,7 @@ import rsa
 import binascii
 import os
 from gmpy2 import mpz, iroot, powmod, mul, t_mod
-from Crypto.Util.number import getPrime
+from Crypto.Util.number import getPrime, bytes_to_long
 
 def to_bytes(n):
     """ Return a bytes representation of a int """
@@ -57,8 +57,11 @@ print(binascii.hexlify(sig))
 print(binascii.hexlify(to_bytes(from_bytes(sig) ** 3)))
 
 
+print(f'message: {message}')
+print(f'sig: {bytes_to_long(sig)}')
 
 
+### the sig doesn't need keys to pass rsa.verify
 p,q = getPrime(1024), getPrime(1024)
 key = rsa.RsaPublicKey(p*q, 3)
 

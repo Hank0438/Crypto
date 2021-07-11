@@ -21,8 +21,9 @@ for x in text:
     else:
         cipher += x
 
-secret = cipher[:19]
-cipher = cipher[19:]
+cut = cipher.index('}')
+secret = cipher[:cut+1]
+cipher = cipher[cut+1:]
 print("secret: ", secret)
 
 class ngram_score(object):

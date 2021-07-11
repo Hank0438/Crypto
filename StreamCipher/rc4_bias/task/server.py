@@ -1,6 +1,7 @@
-from Crypto.Cipher import ARC4
+from Crypto.Util.number import bytes_to_long, long_to_bytes
 from Crypto import Random
-
+import random
+import hashlib 
 
 MOD = 256
 
@@ -73,65 +74,49 @@ def encrypt(key, text):
 
 
 
-def distinguish_rc4(lines):
-    max = 0
-    sums = []
-    for start in range(0, 31, 2):
-        zeroes = 0
-        for line in lines:
-            # Get the second byte
-            char = line.strip()[start:start+2]
-            if char == "00":
-                zeroes += 1
+def gen(stream=None, filename=None):
+    if (stream==None) | (filename==None):
+        print("Please give me stream type and output filename!")
+        exit(-1)
 
-        sums.append(zeroes)
-        if(zeroes > max):
-            max = zeroes
-
-    print()
-    print("Average number of zeroes:")
-    for sum in sums:
-        print(sum / len(lines))
-
-    # If the max was at index 1, we assume it is RC4
-    rc4 = sums.index(max) == 1
-    if rc4:
-        return "rc4"
-    else:
-        return "aes"
-
-def main():
-    # assert(encrypt('Key', 'Plaintext')) == 'BBF316E8D940AF0AD3'
-    # assert(encrypt('Key', 'BBF316E8D940AF0AD3')) == 'Plaintext'
     assert(encrypt(b"\x00"*0x100, encrypt(b"\x00"*0x100, b"\xab"*0x100)) == b"\xab"*0x100)
     # ### distinguish random or rc4
     stream_size = 0x100
     key_size = 0x10
 
-    arr1 = [0]*key_size
-    arr2 = [0]*key_size
     
-    iterations = 100000
+    iterations = 20000
+    
+    f = open(filename, "w")
 
     for _ in range(iterations):
-        stream1 = Random.new().read(stream_size)
-        key = Random.new().read(key_size)
-        stream2 = encrypt(key, b"\x00"*stream_size)
-        for i in range(stream_size//key_size):
-            for j in range(key_size):
-                if stream1[i*key_size+j] == 0:
-                    arr1[j] += 1
-                if stream2[i*key_size+j] == 0:
-                    arr2[j] += 1
 
-    print(arr1[1]/(stream_size//key_size))
-    print(arr2[1]/(stream_size//key_size))
+        if stream == "rc4":     
+            # print("rc4 stream")
+            key = Random.new().read(key_size)
+            s = encrypt(key, b"\x00"*stream_size)
+        else:
+            # print("random stream")
+            s = Random.new().read(stream_size)
 
-    print(arr1)        
-    print(arr2)        
+        f.write(f'{str(bytes_to_long(s))}\n')
+
 
 
 
 
 if __name__=='__main__':
-		main()
+    rc4_list = [random.randint(0, 99) for _ in range(10) ]
+    for i in range(100):
+        if i in rc4_list
+            print(i)
+            gen("rc4", "./stream_%d.txt" % i)   
+        else:
+            gen("random", "./output/stream_%d.txt" % i)
+    
+
+    ans = "".join([str(i) for i in rc4_list])
+    ans = hashlib.md5(ans.encode()).hexdigest()
+    flag = open("./flag.txt", "r").readline().strip()
+    assert( ("Crypto{%s}" % ans) == flag)
+

@@ -4,7 +4,7 @@ import sys
 import os
 import hashlib
 
-flag = open('/home/md5_tunnel/flag', 'r').read()
+flag = open('./flag.txt', 'r').read()
 #flag = open('./flag', 'r').read()
 
 def main():
